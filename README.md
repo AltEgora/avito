@@ -53,12 +53,12 @@ make run
 docker-compose up --build
 Сервис будет доступен на http://localhost:8080.
 
-## Тестирование
+### Тестирование
 Запуск тестов через pytest:
 make test
 
 
-## Makefile
+### Makefile
 make run — запуск сервиса
 
 make test — запуск тестов
@@ -68,7 +68,7 @@ make lint — проверка стиля кода (flake8, black, isort)
 make format — автоматическое форматирование кода
 
 
-## API Endpoints
+### API Endpoints
 Команды
 POST /team/add — добавить команду с пользователями
 
@@ -91,7 +91,7 @@ POST /pullRequest/reassign — переназначить ревьюера
 Dev Only
 POST /reset — сброс базы данных (только для локальной разработки)
 
-## Примеры curl
+### Примеры curl
 Добавить команду:
 curl -X POST http://localhost:8080/team/add \
 -H "Content-Type: application/json" \
