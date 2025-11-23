@@ -44,19 +44,26 @@
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
 venv\Scripts\activate     # Windows
+```
 Установить зависимости:
+```bash
 pip install -r requirements.txt
+```
 Запустить сервис:
+```bash
 make run
-
+```
 Через Docker:
+```bash
 docker-compose up --build
+```
 Сервис будет доступен на http://localhost:8080.
 
 ### Тестирование
 Запуск тестов через pytest:
+```bash
 make test
-
+```
 
 ### Makefile
 make run — запуск сервиса
@@ -93,41 +100,52 @@ POST /reset — сброс базы данных (только для локал
 
 ### Примеры curl
 Добавить команду:
+```bash
 curl -X POST http://localhost:8080/team/add \
 -H "Content-Type: application/json" \
 -d '{"team_name":"backend","members":[{"user_id":"u1","username":"Alice","is_active":true}]}'
-
+```
 Получить команду:
+```bash
 curl -X GET "http://localhost:8080/team/get?team_name=backend"
-
+```
 Установить активность пользователя:
+```bash
 curl -X POST http://localhost:8080/users/setIsActive \
 -H "Content-Type: application/json" \
 -d '{"user_id":"u1","is_active":false}'
-
+```
 Создать Pull Request:
+```bash
 curl -X POST http://localhost:8080/pullRequest/create \
 -H "Content-Type: application/json" \
 -d '{"pull_request_id":"pr-1","pull_request_name":"Feature X","author_id":"u1"}'
-
+```
 Слить PR:
+```bash
 curl -X POST http://localhost:8080/pullRequest/merge \
 -H "Content-Type: application/json" \
 -d '{"pull_request_id":"pr-1"}'
-
+```
 Переназначить ревьюера:
+```bash
 curl -X POST http://localhost:8080/pullRequest/reassign \
 -H "Content-Type: application/json" \
 -d '{"pull_request_id":"pr-1","old_reviewer_id":"u1"}'
-
+```
 Получить PR для ревью:
+```bash
 curl -X GET "http://localhost:8080/users/getReview?user_id=u1"
-
+```
 Получить статистику распределения PR:
+```bash
 curl -X GET http://localhost:8080/stats/user_assignments
-
+```
 Массовая деактивация участников команды:
+```bash
 curl -X POST "http://localhost:8080/team/deactivate_members?team_name=backend"
-
+```
 Сброс базы данных (dev only):
+```bash
 curl -X POST http://localhost:8080/reset
+```
